@@ -15,24 +15,16 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title: Text(
-      //     'LOGIN',
-      //     style: TextStyle(
-      //       fontSize: 25,
-      //       // color: const Color.fromARGB(255, 255, 255, 255),
-      //     ),
-      //   ),
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0,
-      // ),
+      backgroundColor: Colors.black,
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Image.network(
-            'https://i.pinimg.com/736x/fc/39/7f/fc397f3d3a1c9d2aa633d4237c51d8f9.jpg',
-            fit: BoxFit.cover,
+          Opacity(
+            opacity: 0.5,
+            child: Image.network(
+              'https://i.pinimg.com/736x/fc/39/7f/fc397f3d3a1c9d2aa633d4237c51d8f9.jpg',
+              fit: BoxFit.cover,
+            ),
           ),
           SingleChildScrollView(
             child: Padding(

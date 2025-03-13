@@ -18,71 +18,92 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        iconTheme: IconThemeData(color: Colors.white),
-        title: Text(
-          "Register",
-          style: TextStyle(
-            fontSize: 30,
-            color: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: Colors.black,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Opacity(
+            opacity: 0.5,
+            child: Image.network(
+              'https://i.pinimg.com/736x/88/81/59/88815952c7acebd236878a81b1983eae.jpg',
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        backgroundColor: const Color.fromARGB(255, 35, 71, 61),
-      ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 50),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: IconButton(
+                        icon: Icon(Icons.arrow_back, color: Colors.white),
+                        onPressed: () {
+                          Get.back(); 
+                        },
+                      ),
+                    ),
+                    Text(
+                      "Register",
+                      style: TextStyle(fontSize: 30, color: Colors.white),
+                    ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.network(
+                        'https://i.pinimg.com/736x/9d/a3/bf/9da3bf2a02508cda70113bc073c87ad5.jpg',
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        height: MediaQuery.of(context).size.width * 0.6,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    SizedBox(height: 30),
 
-      body: Container(
-        color: Color.fromARGB(255, 17, 61, 48), // Border color
-        padding: EdgeInsets.all(20),
-        child: Column(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                'https://i.pinimg.com/736x/9d/a3/bf/9da3bf2a02508cda70113bc073c87ad5.jpg',
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.width * 0.6,
-                fit: BoxFit.cover,
+                    // ช่องกรอกข้อมูล
+                    AppTextField(lable: "email", controller: emailController),
+                    SizedBox(height: 10),
+                    AppTextField(
+                      lable: "password",
+                      controller: passwordController,
+                      hideText: true,
+                    ),
+                    SizedBox(height: 10),
+                    AppTextField(
+                      lable: "confirm password",
+                      controller: confirmPasswordController,
+                      hideText: true,
+                    ),
+                    SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (!GetUtils.isEmail(emailController.text)) {
+                          Get.snackbar(('Error'), 'Invalid Email');
+                          return;
+                        }
+                        if (passwordController.text.length < 6) {
+                          Get.snackbar('Error', 'Password dose 6 char');
+                        }
+                        if (passwordController.text !=
+                            confirmPasswordController.text) {
+                          Get.snackbar('Error', 'Password dose not match');
+                          return;
+                        }
+                        authContoller.register(
+                          emailController.text,
+                          passwordController.text,
+                        );
+                        Get.back();
+                      },
+
+                      child: Text("Register"),
+                    ),
+                  ],
+                ),
               ),
             ),
-
-            AppTextField(lable: "email", controller: emailController),
-            SizedBox(height: 10),
-            AppTextField(
-              lable: "password",
-              controller: passwordController,
-              hideText: true,
-            ),
-            SizedBox(height: 10),
-            AppTextField(
-              lable: "confirm password",
-              controller: confirmPasswordController,
-              hideText: true,
-            ),
-            SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                if (!GetUtils.isEmail(emailController.text)) {
-                  Get.snackbar(('Error'), 'Invalid Email');
-                  return;
-                }
-                if (passwordController.text.length < 6) {
-                  Get.snackbar('Error', 'Password dose 6 char');
-                }
-                if (passwordController.text != confirmPasswordController.text) {
-                  Get.snackbar('Error', 'Password dose not match');
-                  return;
-                }
-                authContoller.register(
-                  emailController.text,
-                  passwordController.text,
-                );
-                Get.back();
-              },
-              child: Text("Register"),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

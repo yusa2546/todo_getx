@@ -48,6 +48,6 @@ class TodoController extends GetxController {
 
   void clearTodo() {
     todoList.clear();
-    storageService.write('todos', todoList.toJson());
+    //storageService.write('todos', todoList.toJson());
   }
 }

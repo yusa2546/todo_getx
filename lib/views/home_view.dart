@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_getx/controllers/auth_contoller.dart';
-
 import 'package:todo_getx/controllers/todo_controller.dart';
 import 'package:todo_getx/models/todo_model.dart';
 import 'package:todo_getx/views/add_todo_view.dart';
@@ -15,6 +14,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    todoController.fetchTodos();
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -44,32 +44,53 @@ class HomeView extends StatelessWidget {
                 itemCount: todoController.todoList.length,
                 itemBuilder: (context, index) {
                   TodoModel todo = todoController.todoList[index];
-                  return ListTile(
-                    title: Text(
-                      todo.title,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                    ),
-                    subtitle: Text(
-                      todo.description,
-                      style: TextStyle(
-                        color: const Color.fromARGB(255, 71, 124, 79),
-                        fontSize: 16,
+                      elevation: 4,
+                      child: ListTile(
+                        title: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            todo.title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                        subtitle: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            todo.description,
+                            style: TextStyle(
+                              color: const Color.fromARGB(255, 23, 56, 28),
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                        leading: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Checkbox(
+                            value: todo.isDone,
+                            onChanged: (bool? newValue) {
+                              todoController.toggelTodo(index);
+                            },
+                          ),
+                        ),
+                        trailing: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: IconButton(
+                            onPressed: () {
+                              todoController.todoList.removeAt(index);
+                            },
+                            icon: Icon(Icons.delete, color: Colors.redAccent),
+                          ),
+                        ),
                       ),
-                    ),
-                    leading: Checkbox(
-                      value: todo.isDone,
-                      onChanged: (bool? newValue) {
-                        todoController.toggelTodo(index);
-                      },
-                    ),
-                    trailing: IconButton(
-                      onPressed: () {
-                        todoController.todoList.removeAt(index);
-                      },
-                      icon: Icon(Icons.delete, color: Colors.redAccent),
                     ),
                   );
                 },
