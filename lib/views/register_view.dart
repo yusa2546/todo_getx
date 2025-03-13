@@ -19,6 +19,8 @@ class RegisterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.white),
         title: Text(
           "Register",
           style: TextStyle(
@@ -26,16 +28,16 @@ class RegisterView extends StatelessWidget {
             color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 9, 46, 36),
+        backgroundColor: const Color.fromARGB(255, 35, 71, 61),
       ),
+
       body: Container(
+        color: Color.fromARGB(255, 17, 61, 48), // Border color
         padding: EdgeInsets.all(20),
         child: Column(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(
-                20,
-              ),
+              borderRadius: BorderRadius.circular(20),
               child: Image.network(
                 'https://i.pinimg.com/736x/9d/a3/bf/9da3bf2a02508cda70113bc073c87ad5.jpg',
                 width: MediaQuery.of(context).size.width * 0.8,
@@ -46,11 +48,16 @@ class RegisterView extends StatelessWidget {
 
             AppTextField(lable: "email", controller: emailController),
             SizedBox(height: 10),
-            AppTextField(lable: "password", controller: passwordController),
+            AppTextField(
+              lable: "password",
+              controller: passwordController,
+              hideText: true,
+            ),
             SizedBox(height: 10),
             AppTextField(
               lable: "confirm password",
               controller: confirmPasswordController,
+              hideText: true,
             ),
             SizedBox(height: 10),
             ElevatedButton(
@@ -70,6 +77,7 @@ class RegisterView extends StatelessWidget {
                   emailController.text,
                   passwordController.text,
                 );
+                Get.back();
               },
               child: Text("Register"),
             ),

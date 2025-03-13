@@ -5,12 +5,11 @@ import 'package:todo_getx/firebase_options.dart';
 import 'package:todo_getx/services/storage_service.dart';
 import 'package:todo_getx/views/login_view.dart';
 //import 'package:todo_getx/views/home_view.dart';
-import 'package:todo_getx/views/register_view.dart';
+//import 'package:todo_getx/views/register_view.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await StorageService().init();
   runApp(const MyApp());
 }
 

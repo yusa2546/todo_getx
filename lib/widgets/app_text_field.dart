@@ -25,7 +25,8 @@ class AppTextField extends StatelessWidget {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 17, 61, 48), // Custom label color
+              color: Colors.white, // Icon color
+              fontFamily: 'DMSerifText-Italic',
             ),
           ),
         ),
@@ -33,13 +34,14 @@ class AppTextField extends StatelessWidget {
         TextField(
           controller: controller,
           obscureText: hideText,
+          style: TextStyle(color: Colors.white),
           decoration: InputDecoration(
             // Add icon to the left of the text field (optional)
             prefixIcon: Icon(
               hideText
                   ? Icons.lock
                   : Icons.email, // Icon based on the field type
-              color: Color.fromARGB(255, 17, 61, 48), // Icon color
+              color: Colors.white, // Icon color
             ),
             // Border decoration
             border: OutlineInputBorder(
@@ -52,22 +54,33 @@ class AppTextField extends StatelessWidget {
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(
-                color: Color.fromARGB(255, 17, 61, 48), // Focused border color
+                color: Color.fromARGB(
+                  255,
+                  255,
+                  255,
+                  255,
+                ), // Focused border color
                 width: 2,
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(
-                color: Colors.grey.withOpacity(
-                  0.5,
-                ), // Border color when not focused
+                color: const Color.fromARGB(
+                  255,
+                  255,
+                  255,
+                  255,
+                ).withOpacity(0.5), // Border color when not focused
                 width: 1,
               ),
             ),
             // Placeholder text
             hintText: 'Enter your $lable',
-            hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+            hintStyle: TextStyle(
+              color: const Color.fromARGB(255, 255, 255, 255),
+              fontSize: 14,
+            ),
           ),
         ),
       ],

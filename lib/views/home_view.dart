@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo_getx/controllers/auth_contoller.dart';
 
 import 'package:todo_getx/controllers/todo_controller.dart';
 import 'package:todo_getx/models/todo_model.dart';
@@ -10,6 +11,7 @@ class HomeView extends StatelessWidget {
   HomeView({super.key});
 
   TodoController todoController = Get.put(TodoController());
+  AuthContoller authContoller = Get.put(AuthContoller());
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,16 @@ class HomeView extends StatelessWidget {
           ),
         ),
         backgroundColor: Color.fromRGBO(10, 71, 61, 0.859),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            color: Colors.white,
+            onPressed: () {
+              todoController.clearTodo();
+              authContoller.logout();
+            },
+          ),
+        ],
       ),
       body: Obx(() {
         return Column(

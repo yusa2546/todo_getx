@@ -90,6 +90,7 @@ class AddTodoView extends StatelessWidget {
                 todoControler.addTodo(
                   titleController.text,
                   descriptionController.text,
+                  false,
                 );
                 Get.back();
               },
