@@ -25,7 +25,7 @@ class RegisterView extends StatelessWidget {
           Opacity(
             opacity: 0.5,
             child: Image.network(
-              'https://i.pinimg.com/736x/88/81/59/88815952c7acebd236878a81b1983eae.jpg',
+              'https://i.pinimg.com/736x/73/4f/b2/734fb2cce364e9367c4aa4b513c4f2c0.jpg',
               fit: BoxFit.cover,
             ),
           ),
@@ -41,7 +41,7 @@ class RegisterView extends StatelessWidget {
                       child: IconButton(
                         icon: Icon(Icons.arrow_back, color: Colors.white),
                         onPressed: () {
-                          Get.back(); 
+                          Get.back();
                         },
                       ),
                     ),
@@ -52,7 +52,7 @@ class RegisterView extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: Image.network(
-                        'https://i.pinimg.com/736x/9d/a3/bf/9da3bf2a02508cda70113bc073c87ad5.jpg',
+                        'https://i.pinimg.com/736x/61/f9/eb/61f9ebf9301458c911b452d6bf966feb.jpg',
                         width: MediaQuery.of(context).size.width * 0.8,
                         height: MediaQuery.of(context).size.width * 0.6,
                         fit: BoxFit.cover,

@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_getx/controllers/todo_controller.dart';
+import 'package:todo_getx/models/todo_model.dart';
 
-class AddTodoView extends StatelessWidget {
-  AddTodoView({super.key});
+class AddTodoView extends StatefulWidget {
+  AddTodoView({super.key, this.todo});
+  TodoModel? todo;
 
+  @override
+  State<AddTodoView> createState() => _AddTodoViewState();
+}
+
+class _AddTodoViewState extends State<AddTodoView> {
   final TodoController todoControler = Get.put(TodoController());
+
   final TextEditingController titleController = TextEditingController();
+
   final TextEditingController descriptionController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.todo != null) {
+      titleController.text = widget.todo!.title;
+      descriptionController.text = widget.todo!.description;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +53,7 @@ class AddTodoView extends StatelessWidget {
             ),
 
             Text(
-              "Product Name",
+              widget.todo != null ? "edit todo" : "Add Todo",
               style: TextStyle(
                 fontSize: 20,
                 color: const Color.fromARGB(255, 5, 65, 45),
@@ -87,12 +105,20 @@ class AddTodoView extends StatelessWidget {
             SizedBox(height: 15),
             ElevatedButton(
               onPressed: () {
-                todoControler.addTodo(
-                  titleController.text,
-                  descriptionController.text,
-                  false,
-                );
+                if (titleController.text.isEmpty) return;
+                if (widget.todo != null) {
+                  widget.todo!.title = titleController.text;
+                  widget.todo!.description = descriptionController.text;
+                  todoControler.updateTodo(widget.todo!);
+                } else {
+                  todoControler.addTodo(
+                    titleController.text,
+                    descriptionController.text,
+                    false,
+                  );
+                }
                 Get.back();
+                Get.snackbar('สำเร็จ', 'เพิ่มข้อมูลสำเร็จ');
               },
               child: Text(
                 "Submit",

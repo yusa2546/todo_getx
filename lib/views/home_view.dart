@@ -85,11 +85,14 @@ class HomeView extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: IconButton(
                             onPressed: () {
-                              todoController.todoList.removeAt(index);
+                              todoController.deleteTodo(todo.docId ?? '');
                             },
                             icon: Icon(Icons.delete, color: Colors.redAccent),
                           ),
                         ),
+                        onTap: () {
+                          Get.to(AddTodoView(todo: todo));
+                        },
                       ),
                     ),
                   );

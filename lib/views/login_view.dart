@@ -46,7 +46,7 @@ class LoginView extends StatelessWidget {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(16),
                             child: Image.network(
-                              'https://i.pinimg.com/736x/22/6d/09/226d09d8c22af635dd07a03b7f20999e.jpg',
+                              'https://i.pinimg.com/736x/c1/a3/01/c1a301d3305f6798047d65d73ba67225.jpg',
                               width: MediaQuery.of(context).size.width * 0.8,
                               height: MediaQuery.of(context).size.width * 0.6,
                               fit: BoxFit.cover,
